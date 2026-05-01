@@ -1,2 +1,1 @@
-# Lira-
-app contador de histórias infantis 
+Contadora de histórias inteligente para crianças
