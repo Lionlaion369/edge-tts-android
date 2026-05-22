@@ -1,11 +1,5 @@
 pluginManagement {
     repositories {
-        maven {
-            url = uri("https://maven.aliyun.com/repository/public/")
-        }
-        maven {
-            url = uri("https://maven.aliyun.com/repository/central")
-        }
         google {
             content {
                 includeGroupByRegex("com\\.android.*")
@@ -17,20 +11,20 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        maven {
-            url = uri("https://maven.aliyun.com/repository/public/")
-        }
-        maven {
-            url = uri("https://maven.aliyun.com/repository/central")
-        }
         google()
         mavenCentral()
     }
 }
 
 rootProject.name = "EdgeTSS"
+
+// Módulos originais — NÃO alterar
 include(":app")
 include(":engine")
+
+// VoiceKit — sistema de vozes para Lira, Willa, Aegis, Thesaurus, Aurora e futuras IAs
+include(":voicekit")
