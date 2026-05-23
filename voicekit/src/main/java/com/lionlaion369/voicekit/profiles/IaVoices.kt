@@ -1,46 +1,63 @@
+// ══════════════════════════════════════════════════════════════════════
+// ARQUIVO: edge-tts-android/voicekit/src/main/java/com/lionlaion369/voicekit/profiles/IaVoices.kt
+// SUBSTITUA O CONTEÚDO COMPLETO DESTE ARQUIVO POR ESTE CÓDIGO
+// Contém perfis de voz de TODAS as IAs: Lira, Willa, Thaurus
+// ══════════════════════════════════════════════════════════════════════
+
 package com.lionlaion369.voicekit.profiles
 
-import com.lionlaion369.voicekit.core.VoiceGender
 import com.lionlaion369.voicekit.core.VoiceProfile
+import com.lionlaion369.voicekit.core.VoiceGender
 
 /**
- * Perfis de voz de todas as IAs do ecossistema.
+ * IaVoices — Perfis de voz de todas as IAs do ecossistema Lionlaion369
  *
- * PARA ADICIONAR NOVA IA:
- * 1. Copie qualquer bloco abaixo
- * 2. Troque iaId, displayName, edgeVoiceName, rate, pitch
- * 3. Adicione no mapa ALL_VOICES
+ * VOZES FEMININAS PT-BR disponíveis:
+ *   pt-BR-ThalitaNeural   → Jovem, calorosa, expressiva  [LIRA]
+ *   pt-BR-FranciscaNeural → Madura, sofisticada           [WILLA]
+ *   pt-BR-BrendaNeural    → Jovem, vibrante               [futuras]
+ *
+ * VOZES MASCULINAS PT-BR disponíveis:
+ *   pt-BR-DonatoNeural    → Maduro, professoral, grave     [THAURUS]
  */
 object IaVoices {
 
-    // ── LIRA — Contadora de histórias ───────────────────────────
+    // ════════════════════════════════════════════════════════════════
+    // 🌟 LIRA — Contadora de histórias infantis
+    // Voz: FEMININA | ThalitaNeural | jovem, calorosa, expressiva
+    // ════════════════════════════════════════════════════════════════
+
     val LIRA = VoiceProfile(
         iaId = "lira",
         displayName = "Lira",
         gender = VoiceGender.FEMININE,
         edgeVoiceName = "pt-BR-ThalitaNeural",
-        rate = "-15%",
-        pitch = "+8Hz",
-        volume = "+10%",
-        nativePitch = 1.15f,
-        nativeSpeed = 0.88f,
-        description = "Contadora de histórias cristã para crianças 5-10 anos."
+        rate = "-5%",
+        pitch = "+2Hz",
+        volume = "+0%",
+        nativePitch = 1.1f,
+        nativeSpeed = 0.9f,
+        description = "Contadora de histórias infantis. Voz jovem, calorosa e expressiva."
     )
 
     val LIRA_STORY_MODE = VoiceProfile(
         iaId = "lira_story",
-        displayName = "Lira (Modo História)",
+        displayName = "Lira — Modo História",
         gender = VoiceGender.FEMININE,
         edgeVoiceName = "pt-BR-ThalitaNeural",
-        rate = "-25%",
-        pitch = "+12Hz",
-        volume = "+15%",
-        nativePitch = 1.20f,
-        nativeSpeed = 0.80f,
-        description = "Lira em modo narração total. Histórias de 7min33s."
+        rate = "-10%",
+        pitch = "+3Hz",
+        volume = "+5%",
+        nativePitch = 1.1f,
+        nativeSpeed = 0.85f,
+        description = "Modo narração de histórias — mais lento e expressivo."
     )
 
-    // ── WILLA — Assistente pessoal ─────────────────────────────
+    // ════════════════════════════════════════════════════════════════
+    // 👑 WILLA — Coordenadora Central / IA Principal
+    // Voz: FEMININA | FranciscaNeural | madura, sofisticada, autoridade
+    // ════════════════════════════════════════════════════════════════
+
     val WILLA = VoiceProfile(
         iaId = "willa",
         displayName = "Willa",
@@ -51,7 +68,7 @@ object IaVoices {
         volume = "+0%",
         nativePitch = 0.95f,
         nativeSpeed = 1.0f,
-        description = "Coordenadora central Willa. Voz madura, sofisticada."
+        description = "Coordenadora central. Voz madura, sofisticada e com autoridade natural."
     )
 
     val WILLA_COMMAND = VoiceProfile(
@@ -67,7 +84,11 @@ object IaVoices {
         description = "Modo comando — fala com autoridade máxima."
     )
 
-    // ── THAURUS — Pilar da Economia ─────────────────────────────
+    // ════════════════════════════════════════════════════════════════
+    // 💰 THAURUS — Pilar da Economia / IA Financeira
+    // Voz: MASCULINA | DonatoNeural | grave, maduro, barítono profundo
+    // ════════════════════════════════════════════════════════════════
+
     val THAURUS = VoiceProfile(
         iaId = "thaurus",
         displayName = "Thaurus",
@@ -107,18 +128,37 @@ object IaVoices {
         description = "Modo relatório — dados financeiros claros e precisos."
     )
 
-    // ── Mapa de todas as IAs ────────────────────────────────────
+    // ════════════════════════════════════════════════════════════════
+    // 🗺️ MAPA GLOBAL — Todas as vozes indexadas por ID
+    // ════════════════════════════════════════════════════════════════
+
     val ALL_VOICES: Map<String, VoiceProfile> = mapOf(
-        LIRA.iaId            to LIRA,
+        // LIRA
+        LIRA.iaId to LIRA,
         LIRA_STORY_MODE.iaId to LIRA_STORY_MODE,
-        WILLA.iaId           to WILLA,
-        WILLA_COMMAND.iaId   to WILLA_COMMAND,
-        THAURUS.iaId         to THAURUS,
+        // WILLA
+        WILLA.iaId to WILLA,
+        WILLA_COMMAND.iaId to WILLA_COMMAND,
+        // THAURUS
+        THAURUS.iaId to THAURUS,
         THAURUS_ACTIVATION.iaId to THAURUS_ACTIVATION,
-        THAURUS_REPORT.iaId  to THAURUS_REPORT,
-        // NOVA IA: adicione aqui ↓
+        THAURUS_REPORT.iaId to THAURUS_REPORT,
     )
 
-    /** Busca perfil por ID. Retorna LIRA se não encontrar. */
-    fun getById(id: String): VoiceProfile = ALL_VOICES[id] ?: LIRA
+    /**
+     * Busca um perfil de voz pelo ID da IA.
+     */
+    fun getProfile(iaId: String): VoiceProfile? = ALL_VOICES[iaId]
+
+    /**
+     * Retorna todas as IAs femininas.
+     */
+    fun getFeminine(): List<VoiceProfile> =
+        ALL_VOICES.values.filter { it.gender == VoiceGender.FEMININE }
+
+    /**
+     * Retorna todas as IAs masculinas.
+     */
+    fun getMasculine(): List<VoiceProfile> =
+        ALL_VOICES.values.filter { it.gender == VoiceGender.MASCULINE }
 }
