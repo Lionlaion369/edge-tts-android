@@ -5,10 +5,15 @@ import com.lionlaion369.voicekit.core.VoiceProfile
 
 /**
  * Perfis de voz de todas as IAs do ecossistema.
+ *
+ * PARA ADICIONAR NOVA IA:
+ * 1. Copie qualquer bloco abaixo
+ * 2. Troque iaId, displayName, edgeVoiceName, rate, pitch
+ * 3. Adicione no mapa ALL_VOICES
  */
 object IaVoices {
 
-    // ── LIRA — Contadora de histórias infantis ──────────────────
+    // ── LIRA — Contadora de histórias ───────────────────────────
     val LIRA = VoiceProfile(
         iaId = "lira",
         displayName = "Lira",
@@ -111,7 +116,7 @@ object IaVoices {
         THAURUS.iaId         to THAURUS,
         THAURUS_ACTIVATION.iaId to THAURUS_ACTIVATION,
         THAURUS_REPORT.iaId  to THAURUS_REPORT,
-        // Adicione novas vozes aqui ↓
+        // NOVA IA: adicione aqui ↓
     )
 
     /** Busca perfil por ID. Retorna LIRA se não encontrar. */
