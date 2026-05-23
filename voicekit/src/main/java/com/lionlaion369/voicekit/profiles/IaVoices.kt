@@ -46,9 +46,9 @@ object IaVoices {
         iaId = "willa",
         displayName = "Willa",
         gender = VoiceGender.FEMININE,
-        edgeVoiceName = "pt-BR-FranciscaNeural", // ← madura, sofisticada
+        edgeVoiceName = "pt-BR-FranciscaNeural",
         rate = "+0%",
-        pitch = "-2Hz",    // levemente mais grave, mais autoridade
+        pitch = "-2Hz",
         volume = "+0%",
         nativePitch = 0.95f,
         nativeSpeed = 1.0f,
@@ -61,8 +61,8 @@ object IaVoices {
         displayName = "Willa — Modo Comando",
         gender = VoiceGender.FEMININE,
         edgeVoiceName = "pt-BR-FranciscaNeural",
-        rate = "-5%",      // mais pausada em comandos importantes
-        pitch = "-4Hz",    // mais grave para autoridade máxima
+        rate = "-5%",
+        pitch = "-4Hz",
         volume = "+10%",
         nativePitch = 0.9f,
         nativeSpeed = 0.95f,
@@ -97,6 +97,46 @@ object IaVoices {
         description = "IA de conhecimento. Voz professoral e sábia."
     )
 
+    // ─── THAURUS — Masculino Grave ───────────────────────────────
+    val THAURUS = VoiceProfile(
+        iaId = "thaurus",
+        displayName = "Thaurus",
+        gender = VoiceGender.MASCULINE,
+        edgeVoiceName = "pt-BR-DonatoNeural",
+        rate = "-5%",
+        pitch = "-8Hz",
+        volume = "+5%",
+        nativePitch = 0.85f,
+        nativeSpeed = 0.9f,
+        description = "Pilar da Economia. Voz masculina grave, firme e madura."
+    )
+
+    val THAURUS_ACTIVATION = VoiceProfile(
+        iaId = "thaurus_activation",
+        displayName = "Thaurus — Ativação",
+        gender = VoiceGender.MASCULINE,
+        edgeVoiceName = "pt-BR-DonatoNeural",
+        rate = "-10%",
+        pitch = "-10Hz",
+        volume = "+15%",
+        nativePitch = 0.8f,
+        nativeSpeed = 0.85f,
+        description = "Modo ativação — máxima presença e gravidade."
+    )
+
+    val THAURUS_REPORT = VoiceProfile(
+        iaId = "thaurus_report",
+        displayName = "Thaurus — Relatório",
+        gender = VoiceGender.MASCULINE,
+        edgeVoiceName = "pt-BR-DonatoNeural",
+        rate = "+0%",
+        pitch = "-6Hz",
+        volume = "+0%",
+        nativePitch = 0.88f,
+        nativeSpeed = 1.0f,
+        description = "Modo relatório — dados financeiros claros e precisos."
+    )
+
     // ── AURORA — IA [definir descrição] ────────────────────────
     val AURORA = VoiceProfile(
         iaId = "aurora",
@@ -112,15 +152,17 @@ object IaVoices {
     )
 
     // ── Mapa de todas as IAs ────────────────────────────────────
-    // SEMPRE adicione novas IAs aqui também
     val ALL_VOICES: Map<String, VoiceProfile> = mapOf(
-        LIRA.iaId          to LIRA,
+        LIRA.iaId            to LIRA,
         LIRA_STORY_MODE.iaId to LIRA_STORY_MODE,
-        WILLA.iaId         to WILLA,
-        WILLA_COMMAND.iaId to WILLA_COMMAND,   // ← Adicionado
-        AEGIS.iaId         to AEGIS,
-        THESAURUS.iaId     to THESAURUS,
-        AURORA.iaId        to AURORA,
+        WILLA.iaId           to WILLA,
+        WILLA_COMMAND.iaId   to WILLA_COMMAND,
+        AEGIS.iaId           to AEGIS,
+        THESAURUS.iaId       to THESAURUS,
+        THAURUS.iaId         to THAURUS,
+        THAURUS_ACTIVATION.iaId to THAURUS_ACTIVATION,
+        THAURUS_REPORT.iaId  to THAURUS_REPORT,
+        AURORA.iaId          to AURORA,
         // NOVA IA: adicione aqui ↓
     )
 
