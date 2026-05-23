@@ -22,8 +22,8 @@ object IaVoices {
         rate = "-15%",
         pitch = "+8Hz",
         volume = "+10%",
-        nativePitch = 1.15f,   // valor já calibrado no projeto Lira
-        nativeSpeed = 0.88f,   // valor já calibrado no projeto Lira
+        nativePitch = 1.15f,
+        nativeSpeed = 0.88f,
         description = "Contadora de histórias cristã para crianças 5-10 anos."
     )
 
@@ -46,13 +46,27 @@ object IaVoices {
         iaId = "willa",
         displayName = "Willa",
         gender = VoiceGender.FEMININE,
+        edgeVoiceName = "pt-BR-FranciscaNeural", // ← madura, sofisticada
+        rate = "+0%",
+        pitch = "-2Hz",    // levemente mais grave, mais autoridade
+        volume = "+0%",
+        nativePitch = 0.95f,
+        nativeSpeed = 1.0f,
+        description = "Coordenadora central Willa. Voz madura, sofisticada, de liderança."
+    )
+
+    // WILLA em modo comando (autoridade máxima)
+    val WILLA_COMMAND = VoiceProfile(
+        iaId = "willa_command",
+        displayName = "Willa — Modo Comando",
+        gender = VoiceGender.FEMININE,
         edgeVoiceName = "pt-BR-FranciscaNeural",
-        rate = "+5%",
-        pitch = "+2Hz",
+        rate = "-5%",      // mais pausada em comandos importantes
+        pitch = "-4Hz",    // mais grave para autoridade máxima
         volume = "+10%",
-        nativePitch = 1.05f,
-        nativeSpeed = 1.05f,
-        description = "Assistente pessoal. Voz madura, calorosa e confiante."
+        nativePitch = 0.9f,
+        nativeSpeed = 0.95f,
+        description = "Modo comando — fala com autoridade máxima."
     )
 
     // ── AEGIS — IA de segurança ─────────────────────────────────
@@ -103,6 +117,7 @@ object IaVoices {
         LIRA.iaId          to LIRA,
         LIRA_STORY_MODE.iaId to LIRA_STORY_MODE,
         WILLA.iaId         to WILLA,
+        WILLA_COMMAND.iaId to WILLA_COMMAND,   // ← Adicionado
         AEGIS.iaId         to AEGIS,
         THESAURUS.iaId     to THESAURUS,
         AURORA.iaId        to AURORA,
