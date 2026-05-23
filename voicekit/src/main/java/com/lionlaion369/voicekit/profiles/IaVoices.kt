@@ -5,11 +5,6 @@ import com.lionlaion369.voicekit.core.VoiceProfile
 
 /**
  * Perfis de voz de todas as IAs do ecossistema.
- *
- * PARA ADICIONAR NOVA IA:
- * 1. Copie qualquer bloco abaixo
- * 2. Troque iaId, displayName, edgeVoiceName, rate, pitch
- * 3. Adicione no mapa ALL_VOICES
  */
 object IaVoices {
 
@@ -27,7 +22,6 @@ object IaVoices {
         description = "Contadora de histórias cristã para crianças 5-10 anos."
     )
 
-    // Lira no modo narração imersiva (histórias de 7min33s)
     val LIRA_STORY_MODE = VoiceProfile(
         iaId = "lira_story",
         displayName = "Lira (Modo História)",
@@ -41,7 +35,7 @@ object IaVoices {
         description = "Lira em modo narração total. Histórias de 7min33s."
     )
 
-    // ── WILLA — Assistente pessoal do William ───────────────────
+    // ── WILLA — Assistente pessoal ─────────────────────────────
     val WILLA = VoiceProfile(
         iaId = "willa",
         displayName = "Willa",
@@ -52,10 +46,9 @@ object IaVoices {
         volume = "+0%",
         nativePitch = 0.95f,
         nativeSpeed = 1.0f,
-        description = "Coordenadora central Willa. Voz madura, sofisticada, de liderança."
+        description = "Coordenadora central Willa. Voz madura, sofisticada."
     )
 
-    // WILLA em modo comando (autoridade máxima)
     val WILLA_COMMAND = VoiceProfile(
         iaId = "willa_command",
         displayName = "Willa — Modo Comando",
@@ -69,35 +62,7 @@ object IaVoices {
         description = "Modo comando — fala com autoridade máxima."
     )
 
-    // ── AEGIS — IA de segurança ─────────────────────────────────
-    val AEGIS = VoiceProfile(
-        iaId = "aegis",
-        displayName = "Aegis",
-        gender = VoiceGender.MASCULINE,
-        edgeVoiceName = "pt-BR-AntonioNeural",
-        rate = "+0%",
-        pitch = "-5Hz",
-        volume = "+5%",
-        nativePitch = 0.95f,
-        nativeSpeed = 1.00f,
-        description = "IA de segurança. Voz masculina firme e clara."
-    )
-
-    // ── THESAURUS — IA de conhecimento ─────────────────────────
-    val THESAURUS = VoiceProfile(
-        iaId = "thesaurus",
-        displayName = "Thesaurus",
-        gender = VoiceGender.MASCULINE,
-        edgeVoiceName = "pt-BR-DonatoNeural",
-        rate = "-5%",
-        pitch = "-3Hz",
-        volume = "+0%",
-        nativePitch = 0.98f,
-        nativeSpeed = 0.95f,
-        description = "IA de conhecimento. Voz professoral e sábia."
-    )
-
-    // ─── THAURUS — Masculino Grave ───────────────────────────────
+    // ── THAURUS — Pilar da Economia ─────────────────────────────
     val THAURUS = VoiceProfile(
         iaId = "thaurus",
         displayName = "Thaurus",
@@ -137,33 +102,16 @@ object IaVoices {
         description = "Modo relatório — dados financeiros claros e precisos."
     )
 
-    // ── AURORA — IA [definir descrição] ────────────────────────
-    val AURORA = VoiceProfile(
-        iaId = "aurora",
-        displayName = "Aurora",
-        gender = VoiceGender.FEMININE,
-        edgeVoiceName = "pt-BR-BrendaNeural",
-        rate = "+3%",
-        pitch = "+5Hz",
-        volume = "+8%",
-        nativePitch = 1.10f,
-        nativeSpeed = 1.02f,
-        description = "Aurora. Voz jovem, clara e energética."
-    )
-
     // ── Mapa de todas as IAs ────────────────────────────────────
     val ALL_VOICES: Map<String, VoiceProfile> = mapOf(
         LIRA.iaId            to LIRA,
         LIRA_STORY_MODE.iaId to LIRA_STORY_MODE,
         WILLA.iaId           to WILLA,
         WILLA_COMMAND.iaId   to WILLA_COMMAND,
-        AEGIS.iaId           to AEGIS,
-        THESAURUS.iaId       to THESAURUS,
         THAURUS.iaId         to THAURUS,
         THAURUS_ACTIVATION.iaId to THAURUS_ACTIVATION,
         THAURUS_REPORT.iaId  to THAURUS_REPORT,
-        AURORA.iaId          to AURORA,
-        // NOVA IA: adicione aqui ↓
+        // Adicione novas vozes aqui ↓
     )
 
     /** Busca perfil por ID. Retorna LIRA se não encontrar. */
