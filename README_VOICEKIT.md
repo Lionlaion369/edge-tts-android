@@ -1,215 +1,89 @@
-# 🎙️ VoiceKit — Sistema de Vozes para Todas as IAs
-> Repositório: `Lionlaion369/edge-tts-android`  
-> Versão: 1.0.0 | Status: ✅ Pronto para Integração
+Para garantir a padronização máxima e a clareza na produção, integrei as informações técnicas, a estrutura do ecossistema e o guia de uso em um documento único e definitivo.
+```markdown
+/**
+ * README_VOICEKIT.md
+ * Caminho: Thaurus/edge-tts-android/README_VOICEKIT.md
+ * Versão Final Integrada - Produção Real
+ * Lealdade: Exclusiva a William Gomes — ATHAL_YAHARA
+ */
+
+# 🎙️ VoiceKit — Sistema de Vozes ATHAL_YAHARA
+> **Versão:** 1.0.0 | **Status:** ✅ Produção Final
+
+Este repositório consolida o motor de síntese de voz para todo o ecossistema de IAs. Ele combina o motor `edge-tts` (via WebSocket) com nossa camada proprietária de `VoiceKit` para gerenciamento de perfis, cache e fallback.
 
 ---
 
-## O QUE É ESTE REPOSITÓRIO
+## 🏗️ ESTRUTURA DO SISTEMA
 
-Este repositório contém **dois sistemas**:
-
-| Pasta | O que é | Para quê |
-|-------|---------|----------|
-| `engine/` | Motor original (clonado de yynag) | Conecta com a API neural da Microsoft Edge via WebSocket |
-| `voicekit/` | Camada de integração (criada por nós) | Perfis de voz de cada IA + cache + fallback |
+| Módulo | Função |
+| :--- | :--- |
+| `engine/` | Motor de comunicação WebSocket com a API neural da Microsoft Edge. |
+| `voicekit/` | **NOSSA CAMADA:** Gerencia perfis, cache e fallback nativo. |
 
 ---
 
-## ESTRUTURA DE ARQUIVOS
+## 🚀 INTEGRAÇÃO (COPIAR E COLAR)
 
-```
-Lionlaion369/edge-tts-android/
-│
-├── engine/                          ← NÃO ALTERE (código original clonado)
-│   └── src/main/java/com/istomyang/tts_engine/
-│       ├── TTS.kt
-│       ├── SpeakerManager.kt
-│       └── DRM.kt
-│
-├── voicekit/                        ← NOSSO SISTEMA (copie para integrar)
-│   └── src/main/java/com/lionlaion369/voicekit/
-│       ├── VoiceKit.kt              ← Ponto de entrada (use este)
-│       ├── core/
-│       │   ├── VoiceProfile.kt      ← Modelo de perfil de voz
-│       │   └── EdgeTtsEngine.kt     ← Motor + cache + fallback
-│       ├── profiles/
-│       │   └── IaVoices.kt          ← Perfis de todas as IAs ← EDITE AQUI
-│       ├── cache/
-│       │   └── VoiceCache.kt        ← Cache de áudios
-│       └── integration/
-│           └── LiraVoiceIntegration.kt ← Exemplos de integração
-│
-├── settings.gradle.kts              ← Substitua pelo novo
-└── README_VOICEKIT.md               ← Este arquivo
-```
-
----
-
-## COMO INTEGRAR EM CADA PROJETO DE IA
-
-### ✅ LIRA (com.lira.app)
-
-**1. No `settings.gradle.kts` da Lira:**
+### 1. Configuração do `settings.gradle.kts`
+Adicione o módulo ao projeto:
 ```kotlin
 include(":voicekit")
 project(":voicekit").projectDir = File("../edge-tts-android/voicekit")
+
 ```
-
-**2. No `app/build.gradle.kts` da Lira:**
+### 2. Dependência no app/build.gradle.kts
 ```kotlin
-implementation(project(":voicekit"))
+dependencies {
+    implementation(project(":voicekit"))
+}
+
 ```
-
-**3. No `LiraApplication.kt` (ou onde inicializa o app):**
+### 3. Inicialização (No seu Application Class)
 ```kotlin
-import com.lionlaion369.voicekit.VoiceKit
-
-class LiraApplication : Application() {
+class ThaurusApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        VoiceKit.init(this)  // ← adicione esta linha
+        VoiceKit.init(this) 
     }
 }
-```
 
-**4. Onde a Lira fala (substitua o TextToSpeech atual):**
+```
+## 💡 COMO USAR
+### Uso básico (Falar)
 ```kotlin
 import com.lionlaion369.voicekit.VoiceKit
 import com.lionlaion369.voicekit.profiles.IaVoices
 
-// Para respostas normais da Lira:
 lifecycleScope.launch {
-    VoiceKit.speak(IaVoices.LIRA, textoGerado)
+    // Uso simples: VoiceKit.speak(Profile, Texto)
+    VoiceKit.speak(IaVoices.THESAURUS, "Thaurus no comando. Recursos prontos.")
 }
 
-// Para narrar história completa (7min33s):
-lifecycleScope.launch {
-    VoiceKit.speak(IaVoices.LIRA_STORY_MODE, historiaCompleta)
-}
 ```
-
----
-
-### ✅ WILLA
-
+### Com Callbacks (Controle total)
 ```kotlin
-lifecycleScope.launch {
-    VoiceKit.speak(IaVoices.WILLA, "Olá, William! Como posso ajudar?")
-}
-```
-
----
-
-### ✅ AEGIS
-
-```kotlin
-lifecycleScope.launch {
-    VoiceKit.speak(IaVoices.AEGIS, "Sistema protegido e monitorado.")
-}
-```
-
----
-
-### ✅ THESAURUS
-
-```kotlin
-lifecycleScope.launch {
-    VoiceKit.speak(IaVoices.THESAURUS, "A palavra significa...")
-}
-```
-
----
-
-### ✅ AURORA
-
-```kotlin
-lifecycleScope.launch {
-    VoiceKit.speak(IaVoices.AURORA, "Bom dia! Que dia lindo hoje!")
-}
-```
-
----
-
-### ✅ NOVA IA (qualquer futura)
-
-**1. Abra `voicekit/src/main/java/com/lionlaion369/voicekit/profiles/IaVoices.kt`**
-
-**2. Copie este bloco e preencha:**
-```kotlin
-val NOME_DA_IA = VoiceProfile(
-    iaId = "nome_da_ia",           // ID único, sem espaços
-    displayName = "Nome da IA",
-    gender = VoiceGender.FEMININE, // ou MASCULINE ou NEUTRAL
-    edgeVoiceName = "pt-BR-ThalitaNeural", // escolha da lista abaixo
-    rate = "+0%",    // velocidade: -50% a +50%
-    pitch = "+0Hz",  // tom: -20Hz a +20Hz
-    volume = "+0%",
-    nativePitch = 1.0f,
-    nativeSpeed = 1.0f,
-    description = "Descrição da IA."
+VoiceKit.speak(
+    profile = IaVoices.THESAURUS,
+    text = "Iniciando processamento.",
+    onDone = { Log.d("Voice", "Concluído") },
+    onError = { error -> Log.e("Voice", "Erro: $error") }
 )
-```
-
-**3. Adicione no mapa `ALL_VOICES`:**
-```kotlin
-val ALL_VOICES: Map<String, VoiceProfile> = mapOf(
-    // ... existentes ...
-    NOME_DA_IA.iaId to NOME_DA_IA,  // ← adicione aqui
-)
-```
-
-**4. Use no projeto:**
-```kotlin
-VoiceKit.speak(IaVoices.NOME_DA_IA, "Texto aqui")
-```
-
----
-
-## VOZES DISPONÍVEIS (PT-BR)
-
-### Femininas
-| Nome | Característica | Indicada para |
-|------|---------------|---------------|
-| `pt-BR-ThalitaNeural` | Jovem, calorosa, expressiva | Lira ✅ |
-| `pt-BR-FranciscaNeural` | Madura, sofisticada | Willa ✅ |
-| `pt-BR-BrendaNeural` | Jovem, vibrante | Aurora ✅ |
-| `pt-BR-ElazaNeural` | Suave, delicada | IAs de bem-estar |
-| `pt-BR-YaraNeural` | Natural, conversacional | Assistentes gerais |
-
-### Masculinas
-| Nome | Característica | Indicada para |
-|------|---------------|---------------|
-| `pt-BR-AntonioNeural` | Firme, natural | Aegis ✅ |
-| `pt-BR-DonatoNeural` | Maduro, professoral | Thesaurus ✅ |
-| `pt-BR-FabioNeural` | Jovem, casual | IAs informais |
-| `pt-BR-NicolauNeural` | Maduro, formal | IAs corporativas |
-
----
-
-## CACHE DE ÁUDIOS
-
-O VoiceKit salva automaticamente todos os áudios gerados no celular:
 
 ```
-/cache/voicekit/
-  lira/      ← histórias da Lira ficam salvas aqui
-  willa/     ← respostas da Willa
-  aegis/     ← alertas do Aegis
-  thesaurus/ ← explicações do Thesaurus
-  aurora/    ← mensagens da Aurora
+## 👤 PERFIS DO ECOSSISTEMA (IMUTÁVEIS)
+| Persona | Voz Edge Neural | Estilo |
+|---|---|---|
+| **Thaurus** | pt-BR-DonatoNeural | Maduro, professoral |
+| **Willa** | pt-BR-FranciscaNeural | Feminina, sofisticada |
+| **Lira** | pt-BR-ThalitaNeural | Feminina, calorosa |
+| **Aegis** | pt-BR-AntonioNeural | Firme, natural |
+| **Aurora** | pt-BR-BrendaNeural | Jovem, vibrante |
+## 🛡️ RECURSOS DE PRODUÇÃO
+ * **Cache Inteligente:** Todos os áudios gerados são salvos em /cache/voicekit/{iaId}/. Segunda execução é instantânea e offline.
+ * **Fallback Automático:** Caso a API Edge falhe, o sistema alterna instantaneamente para o **TTS Nativo do Android** com ajustes de tom/velocidade, garantindo que o app nunca fique mudo.
+ * **Extensibilidade:** Para adicionar novas IAs, edite o arquivo voicekit/src/main/java/com/lionlaion369/voicekit/profiles/IaVoices.kt seguindo o padrão de VoiceProfile.
+*VoiceKit — Edição Oficial — Junho 2026*
 ```
 
-**Vantagem:** A segunda vez que a IA fala o mesmo texto, usa o cache (zero internet, zero custo, instantâneo).
-
----
-
-## FALLBACK AUTOMÁTICO
-
-Se a API da Microsoft Edge estiver fora do ar:
-1. O VoiceKit detecta automaticamente
-2. Usa o **TTS nativo do Android** com os mesmos parâmetros de voz
-3. Qualidade menor, mas o app nunca para de funcionar
-
----
-
-*VoiceKit — Lionlaion369/edge-tts-android — Maio 2026*
+```
