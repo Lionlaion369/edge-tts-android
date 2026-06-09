@@ -1,3 +1,9 @@
+/**
+ * settings.gradle.kts
+ * Caminho: Thaurus/settings.gradle.kts
+ * Versão Final Integrada - Produção Real
+ */
+
 pluginManagement {
     repositories {
         google {
@@ -20,11 +26,9 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "EdgeTSS"
+rootProject.name = "edge-tts-android"
 
-// Módulos originais — NÃO alterar
+// Módulos do sistema Thaurus
 include(":app")
-include(":engine")
-
-// VoiceKit — sistema de vozes para Lira, Willa, Aegis, Thesaurus, Aurora e futuras IAs
 include(":voicekit")
+include(":engine")
