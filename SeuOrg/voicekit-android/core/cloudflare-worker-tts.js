@@ -1,5 +1,6 @@
 // cloudflare-worker-tts.js — Deploy no seu Worker existente
-// Adicione esta rota ao lira.lionlaion369.workers.dev
+// Adicione esta rota ao lira.lionlaion369.workers.dev 
+// willasuprema.lionlaion369.workers.dev
 
 export default {
   async fetch(request) {
